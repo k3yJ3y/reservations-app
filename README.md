@@ -1,6 +1,6 @@
 # Reservations-app
 ## Opis
-Aplikacija je enostranska spletna aplikacija (SPA) narejena z tehnologijami, kot so react, node/express in MySQL, ustvarjena z namenom omogočanja uporabnikom rezervacijo poljubne entitete. Uporabniki lahko vpišejo naslov, datum in čas začetka ter datum in čas konca rezervacije v ustrezna polja, nato pa s pritiskom na gumb "Add reservation" ustvarijo novo rezervacijo. Ustvarjene rezervacije so nato prikazane na seznamu rezervacij.
+Aplikacija je enostranska spletna aplikacija (SPA), ustvarjena z uporabo tehnologij, kot so React, Node/Express in MySQL. Namenjena je omogočanju uporabnikom rezervacije poljubne entitete. Uporabniki lahko vpišejo naslov, datum in čas začetka ter datum in čas konca rezervacije v ustrezna polja. S pritiskom na gumb "Add reservation" lahko ustvarijo novo rezervacijo. Ustvarjene rezervacije se nato prikazujejo na seznamu rezervacij.
 
 Na seznamu rezervacij so rezervacije urejene po datumu in času začetka, pri čemer so vizualno ločene glede na njihov status:
 - Pretekle rezervacije so označene z rdečo barvo.
@@ -40,7 +40,7 @@ PORT=Vrata, na katerih želiš, da bo aplikacija dostopna.
 5. V kolikor želite pognati teste uporabite ```npm test```
 
 ## Description
-The application is a Single Page Application (SPA) designed to allow users to reserve various entities. Users can enter the title, start date and time, as well as the end date and time for the reservation in the respective fields. Afterward, by pressing the "Add reservation" button, they can create a new reservation, which will then be displayed on the list of reservations below.
+The application is a single page web application (SPA) built using technologies such as React, Node/Express and MySQL. It is intended to allow users to book any entity. Users can enter the address, start date and time, and end date and time of the reservation in the appropriate fields. By pressing the "Add reservation" button, they can create a new reservation. The created reservations are then displayed in the reservation list.
 
 On the reservations list, entries are organized by the start date and time, and their status is visually indicated as follows:
 - Past reservations are highlighted in red.
