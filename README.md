@@ -9,6 +9,9 @@ Na seznamu rezervacij so rezervacije urejene po datumu in času začetka, pri č
  
 Uporabniki imajo možnost izbrisati posamezno rezervacijo s pritiskom na gumb v vrstici rezervacije, kar omogoča enostavno upravljanje s seznamom rezervacij. Celotna izkušnja je zasnovana tako, da omogoča hitro in pregledno rezervacijo entitet glede na časovne parametre.
 
+### Demonstrativni video
+Vabljeni k ogledu kratkega demonstracijskega videa, ki prikazuje delovanje same aplikacije. Video je dostopen na naslovu [https://youtu.be/lsayNLVujcE](https://youtu.be/lsayNLVujcE).
+
 ## Navodila
 najprej klonirajte GitHub repozitorij na svoj računalnik
 ```
@@ -48,6 +51,9 @@ On the reservations list, entries are organized by the start date and time, and 
 - Reservations scheduled for the future are marked in white.
 
 Users have the option to delete individual reservations by pressing the button in the reservation row, allowing for easy management of the reservations list. The entire user experience is designed to facilitate a quick and clear reservation process for entities based on chronological parameters.
+
+### Demonstrative video
+You can also watch a short demonstrative video showcasing the functionality of the application at [https://youtu.be/lsayNLVujcE](https://youtu.be/lsayNLVujcE).
 
 ## Instructions
 first clone the GitHub repository to your computer
