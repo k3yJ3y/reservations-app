@@ -9,20 +9,12 @@ import ErrorAlert from './components/ErrorAlert';
 
 import './App.css';
 
-interface Reservation {
-  reservationId: string;
-  title: string;
-  start_at: string;
-  end_at: string;
-}
+import { Reservation } from './lib/definitions';
 
 function App() {
   const [reservations, setReservations] = useState<Reservation[]>([]); // Specify the type
   const [error, setError] = useState<string | null>(null);
 
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
-
-  console.log(backendUrl);
 
   // fetching reservations
   useEffect(() => {

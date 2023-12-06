@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 
 import { TextField, Button, Container, Grid, Typography } from '@mui/material';
 
-interface CreateFormProps {
-  addReservation: (reservation: any) => void;
-}
+import { CreateFormProps } from '../lib/definitions';
 
 const CreateForm: React.FC<CreateFormProps> = ({ addReservation }) => {
   const [title, setTitle] = useState<string>('');

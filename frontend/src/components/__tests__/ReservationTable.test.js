@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import ReservationTable from '../ReservationTable';
-import { formatDate } from '../../util/formatDate';
+import { formatDate } from '../../lib/utils';
 
 const sampleReservations = [
   {

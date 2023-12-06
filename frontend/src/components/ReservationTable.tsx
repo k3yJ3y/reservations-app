@@ -16,19 +16,9 @@ import {
 
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
 
-import { formatDate } from '../util/formatDate';
+import { formatDate } from '../lib/utils';
 
-interface Reservation {
-  reservationId: string;
-  title: string;
-  start_at: string;
-  end_at: string;
-}
-
-interface ReservationTableProps {
-  reservations: Reservation[];
-  onDelete: (reservationId: string) => void;
-}
+import { ReservationTableProps } from '../lib/definitions';
 
 const Placeholder = () => (
   <Box
