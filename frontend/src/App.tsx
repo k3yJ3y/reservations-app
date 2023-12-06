@@ -6,6 +6,11 @@ import Navbar from './components/Navbar';
 import CreateForm from './components/CreateForm';
 import ReservationTable from './components/ReservationTable';
 import ErrorAlert from './components/ErrorAlert';
+import {
+  fetchReservations,
+  addReservation,
+  deleteReservation,
+} from './lib/apiService';
 
 import './App.css';
 
@@ -15,84 +20,42 @@ function App() {
   const [reservations, setReservations] = useState<Reservation[]>([]); // Specify the type
   const [error, setError] = useState<string | null>(null);
 
-
   // fetching reservations
   useEffect(() => {
-    const fetchReservations = async () => {
+    const fetchReservationsData = async () => {
       try {
-        const reservationResponse = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations`
-        );
-        const reservationResponseData = await reservationResponse.json();
-
-        if (!reservationResponse.ok) {
-          throw new Error(reservationResponseData.message);
-        }
-
-        setReservations(reservationResponseData.reservations);
+        const data = await fetchReservations();
+        setReservations(data);
       } catch (error: any) {
-        console.error('Error fetching reservations:', error);
         setError(error.message);
       }
     };
-    fetchReservations();
+
+    fetchReservationsData();
   }, []);
 
   // adding reservation
-  const addReservation = async (reservation: Reservation) => {
+  const addReservationHandler = async (reservation: Reservation) => {
     try {
-      const reservationResponse = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/add`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(reservation),
-        }
-      );
-
-      const reservationResponseData = await reservationResponse.json();
-
-      if (!reservationResponse.ok) {
-        throw new Error(reservationResponseData.message);
-      }
-
+      const data = await addReservation(reservation);
       setReservations((prevReservations) =>
-        [...prevReservations, reservationResponseData.reservation].sort(
-          (a, b) =>
-            new Date(a.start_at).getTime() - new Date(b.start_at).getTime()
-        )
+        [...prevReservations, data].sort(/* your sorting logic */)
       );
     } catch (error: any) {
-      console.error('Error adding reservation:', error);
       setError(error.message);
     }
   };
 
   // deleteing reservation
-  const deleteReservation = async (reservationId: string) => {
+  const deleteReservationHandler = async (reservationId: string) => {
     try {
-      const reservationResponse = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/${reservationId}`,
-        {
-          method: 'DELETE',
-        }
-      );
-
-      const reservationResponseData = await reservationResponse.json();
-
-      if (!reservationResponse.ok) {
-        throw new Error(reservationResponseData.message);
-      }
-
+      await deleteReservation(reservationId);
       setReservations((prevReservations) =>
         prevReservations.filter(
           (reservation) => reservation.reservationId !== reservationId
         )
       );
     } catch (error: any) {
-      console.error('Error deleting reservation:', error);
       setError(error.message);
     }
   };
@@ -108,10 +71,10 @@ function App() {
         {error && (
           <ErrorAlert message={error} closeErr={handleCloseErrorAlert} />
         )}
-        <CreateForm addReservation={addReservation} />
+        <CreateForm addReservation={addReservationHandler} />
         <ReservationTable
           reservations={reservations}
-          onDelete={deleteReservation}
+          onDelete={deleteReservationHandler}
         />
       </Container>
     </main>
