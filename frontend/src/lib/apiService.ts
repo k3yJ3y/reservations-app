@@ -2,7 +2,9 @@ import { Reservation } from './definitions';
 
 export const fetchReservations = async (): Promise<Reservation[]> => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations`);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations`
+    );
     const data = await response.json();
 
     if (!response.ok) {
@@ -16,15 +18,20 @@ export const fetchReservations = async (): Promise<Reservation[]> => {
   }
 };
 
-export const addReservation = async (reservation: Reservation): Promise<Reservation> => {
+export const addReservation = async (
+  reservation: Reservation
+): Promise<Reservation> => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/add`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(reservation),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/add`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservation),
+      }
+    );
 
     const data = await response.json();
 
@@ -39,11 +46,16 @@ export const addReservation = async (reservation: Reservation): Promise<Reservat
   }
 };
 
-export const deleteReservation = async (reservationId: string): Promise<void> => {
+export const deleteReservation = async (
+  reservationId: string
+): Promise<void> => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/${reservationId}`, {
-      method: 'DELETE',
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/${reservationId}`,
+      {
+        method: 'DELETE',
+      }
+    );
 
     const data = await response.json();
 
