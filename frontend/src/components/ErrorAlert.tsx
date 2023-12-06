@@ -3,7 +3,12 @@ import React from 'react';
 import Alert from '@mui/material/Alert';
 import { AlertTitle } from '@mui/material';
 
-const ErrorAlert = ({ message, closeErr }) => {
+interface ErrorAlertProps {
+  message: string;
+  closeErr: () => void;
+}
+
+const ErrorAlert: React.FC<ErrorAlertProps> = ({ message, closeErr }) => {
   return (
     <Alert
       severity='error'

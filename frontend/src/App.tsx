@@ -9,9 +9,20 @@ import ErrorAlert from './components/ErrorAlert';
 
 import './App.css';
 
+interface Reservation {
+  reservationId: string;
+  title: string;
+  start_at: string;
+  end_at: string;
+}
+
 function App() {
-  const [reservations, setReservations] = useState([]);
-  const [error, setError] = useState(null);
+  const [reservations, setReservations] = useState<Reservation[]>([]); // Specify the type
+  const [error, setError] = useState<string | null>(null);
+
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+  console.log(backendUrl);
 
   // fetching reservations
   useEffect(() => {
@@ -27,7 +38,7 @@ function App() {
         }
 
         setReservations(reservationResponseData.reservations);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error fetching reservations:', error);
         setError(error.message);
       }
@@ -36,7 +47,7 @@ function App() {
   }, []);
 
   // adding reservation
-  const addReservation = async (reservation) => {
+  const addReservation = async (reservation: Reservation) => {
     try {
       const reservationResponse = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/add`,
@@ -57,17 +68,18 @@ function App() {
 
       setReservations((prevReservations) =>
         [...prevReservations, reservationResponseData.reservation].sort(
-          (a, b) => new Date(a.start_at) - new Date(b.start_at)
+          (a, b) =>
+            new Date(a.start_at).getTime() - new Date(b.start_at).getTime()
         )
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error adding reservation:', error);
       setError(error.message);
     }
   };
 
   // deleteing reservation
-  const deleteReservation = async (reservationId) => {
+  const deleteReservation = async (reservationId: string) => {
     try {
       const reservationResponse = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/api/v1/reservations/${reservationId}`,
@@ -87,7 +99,7 @@ function App() {
           (reservation) => reservation.reservationId !== reservationId
         )
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting reservation:', error);
       setError(error.message);
     }

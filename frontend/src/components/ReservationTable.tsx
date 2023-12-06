@@ -18,6 +18,18 @@ import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
 
 import { formatDate } from '../util/formatDate';
 
+interface Reservation {
+  reservationId: string;
+  title: string;
+  start_at: string;
+  end_at: string;
+}
+
+interface ReservationTableProps {
+  reservations: Reservation[];
+  onDelete: (reservationId: string) => void;
+}
+
 const Placeholder = () => (
   <Box
     border={1}
@@ -32,7 +44,7 @@ const Placeholder = () => (
   </Box>
 );
 
-const isReservationActive = (startAt, endAt) => {
+const isReservationActive = (startAt: string, endAt: string) => {
   const currentDate = new Date();
   const startDate = new Date(startAt);
   const endDate = new Date(endAt);
@@ -40,7 +52,10 @@ const isReservationActive = (startAt, endAt) => {
   return startDate <= currentDate && currentDate <= endDate;
 };
 
-const ReservationTable = ({ reservations, onDelete }) => {
+const ReservationTable: React.FC<ReservationTableProps> = ({
+  reservations,
+  onDelete,
+}) => {
   return (
     <Container>
       <Typography variant='overline'>Active Reservations</Typography>
@@ -78,7 +93,6 @@ const ReservationTable = ({ reservations, onDelete }) => {
                   <TableCell>{formatDate(reservation.end_at)}</TableCell>
                   <TableCell>
                     <IconButton
-                      variant='outlined'
                       color='error'
                       onClick={() => onDelete(reservation.reservationId)}
                       data-testid={`delete-button-${reservation.reservationId}`}

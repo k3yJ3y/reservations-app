@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 
 import { TextField, Button, Container, Grid, Typography } from '@mui/material';
 
-const CreateForm = ({ addReservation }) => {
-  const [title, setTitle] = useState('');
-  const [startAt, setStartAt] = useState('');
-  const [endAt, setEndAt] = useState('');
+interface CreateFormProps {
+  addReservation: (reservation: any) => void;
+}
 
-  const handleSubmit = (e) => {
+const CreateForm: React.FC<CreateFormProps> = ({ addReservation }) => {
+  const [title, setTitle] = useState<string>('');
+  const [startAt, setStartAt] = useState<string>('');
+  const [endAt, setEndAt] = useState<string>('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newReservation = {
@@ -28,7 +32,7 @@ const CreateForm = ({ addReservation }) => {
       <Typography variant='overline'>Create Reservation</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
-          inputProps={{ "data-testid": "title-input" }}
+          inputProps={{ 'data-testid': 'title-input' }}
           label='Title'
           variant='outlined'
           fullWidth
@@ -41,7 +45,7 @@ const CreateForm = ({ addReservation }) => {
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
-              inputProps={{ "data-testid": "start_at-input" }}
+              inputProps={{ 'data-testid': 'start_at-input' }}
               helperText='Please enter start date and time'
               type='datetime-local'
               variant='outlined'
@@ -54,7 +58,7 @@ const CreateForm = ({ addReservation }) => {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              inputProps={{ "data-testid": "end_at-input" }}
+              inputProps={{ 'data-testid': 'end_at-input' }}
               helperText='Please enter end date and time'
               type='datetime-local'
               variant='outlined'
