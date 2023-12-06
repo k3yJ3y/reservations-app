@@ -85,7 +85,6 @@ const CreateForm: React.FC<CreateFormProps> = ({ addReservation }) => {
           onChange={(e) => setTitle(e.target.value)}
           error={!!titleError}
           helperText={titleError}
-          required
         />
 
         <Grid container spacing={2}>
@@ -104,7 +103,6 @@ const CreateForm: React.FC<CreateFormProps> = ({ addReservation }) => {
               }}
               error={!!startAtError}
               helperText={startAtError}
-              required
             />
           </Grid>
           <Grid item xs={6}>
@@ -122,7 +120,6 @@ const CreateForm: React.FC<CreateFormProps> = ({ addReservation }) => {
               }}
               error={!!endAtError}
               helperText={endAtError}
-              required
             />
           </Grid>
         </Grid>
