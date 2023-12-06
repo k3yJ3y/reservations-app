@@ -4,15 +4,17 @@ import '@testing-library/jest-dom/extend-expect';
 import ReservationTable from '../ReservationTable';
 import { formatDate } from '../../lib/utils';
 
-const sampleReservations = [
+import { Reservation } from '../../lib/definitions';
+
+const sampleReservations: Reservation[] = [
   {
-    reservationId: 1,
+    reservationId: '1',
     title: 'Sample Reservation 1',
     start_at: '2075-01-01T12:00:00',
     end_at: '2075-01-01T14:00:00',
   },
   {
-    reservationId: 2,
+    reservationId: '2',
     title: 'Sample Reservation 2',
     start_at: '2075-01-02T12:00:00',
     end_at: '2075-01-02T14:00:00',
@@ -21,7 +23,7 @@ const sampleReservations = [
 
 describe('ReservationTable', () => {
   it('renders the placeholder when there are no reservations', () => {
-    render(<ReservationTable reservations={[]} />);
+    render(<ReservationTable reservations={[]} onDelete={() => {}}/>);
     const placeholderText = screen.getByText(
       'There are no active reservations at the moment ...'
     );
@@ -29,8 +31,8 @@ describe('ReservationTable', () => {
   });
 
   it('renders reservations correctly', () => {
-    render(<ReservationTable reservations={sampleReservations} />);
-    
+    render(<ReservationTable reservations={sampleReservations} onDelete={() => {}}/>);
+
     expect(screen.getByText('Title')).toBeInTheDocument();
     expect(screen.getByText('Start At')).toBeInTheDocument();
     expect(screen.getByText('End At')).toBeInTheDocument();
@@ -43,7 +45,9 @@ describe('ReservationTable', () => {
       const endAtCell = screen.getByText(
         new RegExp(formatDate(reservation.end_at))
       );
-      const deleteButton = screen.getByTestId(`delete-button-${reservation.reservationId}`);
+      const deleteButton = screen.getByTestId(
+        `delete-button-${reservation.reservationId}`
+      );
 
       expect(titleCell).toBeInTheDocument();
       expect(startAtCell).toBeInTheDocument();
@@ -51,6 +55,4 @@ describe('ReservationTable', () => {
       expect(deleteButton).toBeInTheDocument();
     }
   });
-
-
 });

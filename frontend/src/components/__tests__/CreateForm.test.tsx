@@ -9,9 +9,11 @@ describe('CreateForm', () => {
 
     render(<CreateForm addReservation={mockAddReservation} />);
 
-    const titleInput = screen.getByTestId('title-input');
-    const startAtInput = screen.getByTestId('start_at-input');
-    const endAtInput = screen.getByTestId('end_at-input');
+    const titleInput = screen.getByTestId('title-input') as HTMLInputElement;
+    const startAtInput = screen.getByTestId(
+      'start_at-input'
+    ) as HTMLInputElement;
+    const endAtInput = screen.getByTestId('end_at-input') as HTMLInputElement;
     const addButton = screen.getByText('Add Reservation');
 
     fireEvent.change(titleInput, { target: { value: 'Test Reservation' } });
